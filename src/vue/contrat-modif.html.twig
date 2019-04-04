@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'un contrat {% endblock %}
+       
+{% block contenu %} <h1> Modification d'un contrat </h1> 
+
+{% if form.contrat is defined %} 
+    {% if form.contrat != null %}    
+    <div class="panel-body">
+    <form  class="form-signin" action="index.php?page=contratmodif" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="idContrat" name="idContrat" value="{{form.contrat.idContrat}}"/> 
+        <label for="inputCode">Projet corespondant:  {{form.contrat.idContrat}}</label>
+        <br/>
+            <select name="inputCode" class="form-control">
+        {% for c in form.liste %}
+    <option value="{{c.code}}">{{c.libelleProjet}}</option>
+        {% endfor %}
+    </select>
+        <br/>
+        <label for="inputIdEntreprise">Entreprise:</label>
+            <select name="inputIdEntreprise" class="form-control">
+        {% for c in form.liste2 %}
+    <option value="{{c.idEntreprise}}">{{c.nom}}</option>
+        {% endfor %}
+    </select>
+        <br/>
+        <label for="inputDateDebut">Date de début:   {{form.contrat.dateDebut}}</label>
+        <input type="date" id="inputDateDebut" name="inputDateDebut" class="form-control" required autofocus>
+        <br/>
+        <label for="inputDateFin">Date de fin:   {{form.contrat.dateFin}}</label>
+        <input type="date" id="inputDateFin" name="inputDateFin" class="form-control" required autofocus>
+        <br/>
+        <label for="inputDateSignature">Date de signature:   {{form.contrat.dateSignature}}</label>
+        <input type="date" id="inputDateSignature" name="inputDateSignature" class="form-control" required autofocus>
+        <br/>
+        <label for="inputcout">Coût du contrat:   {{form.contrat.cout}} €</label>
+        <input type="text" id="inputCout" name="inputCout" class="form-control" placeholder="Coût du Projet" required autofocus>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+    </form>
+    </div>  
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=entreprise" class="violet">Retourner sur la liste des entreprises</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=entreprise" class="violet">Retourner sur la liste des entreprises</a></h1>
+        {% endif %} 
+    {% endif %} 
+{% else %} 
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=entreprise" class="violet">Retourner sur la liste des entreprises</a></h1>
+       
+{% endif %}
+{% endblock %} 

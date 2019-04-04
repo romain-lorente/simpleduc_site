@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Ajout d'une rémunération {% endblock %}
+       
+{% block contenu %} <h1> Ajout d'une rémunération </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussi</h1>
+    {% else %} 
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
+    {% endif %}     
+{% else %}      
+    
+<div class="panel-body">
+  <form  class="form-signin" action="index.php?page=remunerationajout" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="inputLibelle">Libellé :</label>
+    <br/>
+    <input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Saisir un libellé" required autofocus>
+    <br/>
+	<label for="inputCoutHoraire">Coût horaire :</label>
+	<br/>
+    <input type="text" id="inputCoutHoraire" name="inputCoutHoraire" class="form-control" placeholder="Saisir un coût horaire" required autofocus>
+    <br/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+  </form>
+</div>    
+{% endif %}
+{% endblock %} 

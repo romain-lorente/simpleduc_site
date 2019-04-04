@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Ajout d'un Contrat {% endblock %}
+       
+{% block contenu %} <h1> Ajout d'un Contrat </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussi</h1>
+    {% else %} 
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
+    {% endif %}     
+{% else %}      
+<div class="panel-body">
+  <form  class="form-signin" action="index.php?page=contratajout" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="inputDesignation">Projet correspondant:</label>
+    <br/>
+        <select name="inputCode" class="form-control">
+    {% for c in form.liste %}
+  <option value="{{c.code}}">{{c.libelle}}</option>
+    {% endfor %}
+</select>
+    <br/>
+    <label for="inputDesignation">Entreprise:</label>
+        <select name="inputIdEntreprise" class="form-control">
+    {% for c in form.liste2 %}
+  <option value="{{c.idEntreprise}}">{{c.nom}}</option>
+    {% endfor %}
+</select>
+    <br/>
+    <label for="inputDateDebut">Date de début:</label>
+    <input type="date" id="inputDateDebut" name="inputDateDebut" class="form-control" required autofocus>
+    <br/>
+    <label for="inputDateFin">Date de fin:</label>
+    <input type="date" id="inputDateFin" name="inputDateFin" class="form-control" required autofocus>
+    <br/>
+    <label for="inputDateSignature">Date de signature:</label>
+    <input type="date" id="inputDateSignature" name="inputDateSignature" class="form-control" required autofocus>
+    <br/>
+    <label for="inputcout">Coût du contrat:</label>
+    <input type="text" id="inputCout" name="inputCout" class="form-control" placeholder="Coût du Projet" required autofocus>
+    <br/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+  </form>
+</div>    
+{% endif %}
+{% endblock %}

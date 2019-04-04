@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Ajout d'un développeur {% endblock %}
+       
+{% block contenu %} <h1> Ajout d'un développeur </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussi</h1>
+    {% else %} 
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
+    {% endif %}     
+{% else %}      
+    
+<div class="panel-body">
+  <form  class="form-signin" action="index.php?page=developpeurajout" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="inputEmail" class="sr-only">Email:</label>
+    <select name="inputEmail" class="form-control">
+        {% for r in form.liste %}
+            <option value="{{ r.email }}">{{ r.email }}</option> 
+        {% endfor%}    
+    </select>  
+    <label for="inputIdRem" class="sr-only">Rémunération:</label>
+    <select name="inputIdRem" class="form-control">
+        {% for r in form.liste2 %}
+            <option value="{{ r.idRem }}">{{ r.libelle }}</option> 
+        {% endfor%}    
+    </select>    
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+  </form>
+</div>    
+{% endif %}
+{% endblock %} 

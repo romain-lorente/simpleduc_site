@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'un outil {% endblock %}
+       
+{% block contenu %} <h1> Modification d'un outil </h1> 
+
+{% if form.outil is defined %} 
+    {% if form.outil != null %}    
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=outilmodif" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="id" name="id" value="{{form.outil.id}}"/> 
+        <label for="inputDesignation" class="sr-only">Libellé:</label>
+        <input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Saisir un libellé" value="{{form.outil.libelle}}" required autofocus>
+		<label for="inputVersion" class="sr-only">Version:</label>
+        <input type="text" id="inputVersion" name="inputVersion" class="form-control" placeholder="Saisir une version" value="{{form.outil.version}}" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Ajouter</button>
+        </form>
+        </div> 
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=outil" class="violet">Retourner sur la liste des outils</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=outil" class="violet">Retourner sur la liste des outils</a></h1>
+        {% endif %} 
+    {% endif %} 
+{% else %} 
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=outil" class="violet">Retourner sur la liste des outils</a></h1>
+       
+{% endif %}
+{% endblock %}

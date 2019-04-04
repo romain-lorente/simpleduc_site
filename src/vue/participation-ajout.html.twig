@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Ajout d'un membre {% endblock %}
+       
+{% block contenu %} <h1> Ajout d'un membre </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussi</h1>
+    {% else %} 
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
+    {% endif %}     
+{% else %}      
+    
+<div class="panel-body">
+  <form  class="form-signin" action="index.php?page=participationajout&idEquipe={{ unIdEquipe }}" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="inputIdDev">Développeur :</label>
+    <select name="inputIdDev" class="form-control">
+        {% for r in form.liste %}
+            <option value="{{ r.email }}">{{ r.email }}</option> 
+        {% endfor%}    
+    </select>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+  </form>
+</div>    
+{% endif %}
+{% endblock %} 

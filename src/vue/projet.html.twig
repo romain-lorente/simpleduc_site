@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Gestion des projets {% endblock %}
+       
+{% block contenu %} <h1> Gestion des projets </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+       {% else %}  
+       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+    {% endif %}         
+{% endif %}         
+    
+<div class="panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading background-violet">Liste des projets - <a href="index.php?page=projetajout" class="blanc">Ajouter un projet</a></div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+  <table class="table table-hover table-striped">
+      <tr><th>Libellé</th><th>Équipe</th><th></th><th></th></tr>
+   {% for e in liste %}
+          <tr><td>{{e.libelleProjet}}</td><td>{{e.libelleEquipe}} </td><td> <div class="btn-group btn-group-lg"><a href="index.php?page=projetmodif&code={{e.code}}"><span class="glyphicon glyphicon-pencil violet" aria-hidden="true"></span></a></div></td><td><div class="btn-group btn-group-lg"><a href="index.php?page=projet&code={{e.code}}"><span class="glyphicon glyphicon-trash violet" aria-hidden="true"></span></a></div></td></tr> 
+   {% endfor %}    
+  </table>
+  </div>
+</div>
+
+{% endblock %} 
+
+

@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Ajout d'une Entreprise {% endblock %}
+       
+{% block contenu %} <h1> Ajout d'une entreprise </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussi</h1>
+    {% else %} 
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
+    {% endif %}     
+{% else %}      
+    
+<div class="panel-body">
+  <form  class="form-signin" action="index.php?page=entrepriseajout" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="inputDesignation" class="sr-only">Libellé:</label>
+    <br/>
+    <input type="text" id="inputNom" name="inputNom" class="form-control" placeholder="saisir un Nom d'entreprise" required autofocus>
+    <br/>
+    <input type="text" id="inputAdresse" name="inputAdresse" class="form-control" placeholder="saisir une adresse" required autofocus>
+    <br/>
+    <input type="text" id="inputCp" name="inputCp" class="form-control" placeholder="saisir un code postal" required autofocus>
+    <br/>
+    <input type="text" id="inputVille" name="inputVille" class="form-control" placeholder="saisir un Nom de ville" required autofocus>
+    <br/>
+    <input type="text" id="inputNomContact" name="inputNomContact" class="form-control" placeholder="saisir un nom de contact" required autofocus>
+    <br/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+  </form>
+</div>    
+{% endif %}
+{% endblock %} 

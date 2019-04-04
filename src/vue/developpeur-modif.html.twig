@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'un développeur {% endblock %}
+       
+{% block contenu %} <h1> Modification d'un développeur </h1> 
+
+{% if form.dev is defined %} 
+    {% if form.dev != null %}    
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=developpeurmodif" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="inputEmail" name="inputEmail" value="{{form.dev.email}}"/> 
+        <label for="inputIdRem" class="sr-only">Rémunération:</label>
+        <select name="inputIdRem" class="form-control">  
+        {% for u in form.liste %}
+            {% if form.dev.idRem == u.idRem %}  
+                <option value="{{ u.idRem }}" selected>{{ u.libelle }}</option> 
+            {% else %} 
+                <option value="{{ u.idRem }}">{{ u.libelle }}</option>
+            {% endif %}      
+        {% endfor%}    
+        </select>    
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Ajouter</button>
+        </form>
+        </div> 
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=developpeur" class="violet">Retourner sur la liste des développeurs</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=developpeur" class="violet">Retourner sur la liste des développeurs</a></h1>
+        {% endif %} 
+    {% endif %} 
+{% else %} 
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=developpeur" class="violet">Retourner sur la liste des développeurs</a></h1>
+       
+{% endif %}
+{% endblock %} 

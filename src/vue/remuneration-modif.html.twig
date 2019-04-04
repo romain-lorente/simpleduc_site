@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'une rémunération {% endblock %}
+       
+{% block contenu %} <h1> Modification d'une rémunération </h1> 
+
+{% if form.remuneration is defined %} 
+    {% if form.remuneration != null %}    
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=remunerationmodif" method="post" enctype="application/x-www-form-urlencoded">
+			<input type="hidden" id="idRem" name="idRem" value="{{form.remuneration.idRem}}"/> 
+			<label for="inputLibelle">Libellé :</label>
+			<br/>
+			<input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Saisir un libellé" value="{{form.remuneration.libelle}}" required autofocus>
+			<br/>
+			<label for="inputCoutHoraire" class="sr-only">Coût horaire :</label>
+			<input type="text" id="inputCoutHoraire" name="inputCoutHoraire" class="form-control" placeholder="Saisir un coût horaire" value="{{form.remuneration.coutHoraire}}" required autofocus>
+			<br/>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Ajouter</button>
+        </form>
+        </div> 
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=remuneration" class="violet">Retourner sur la liste des rémunérations</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=remuneration" class="violet">Retourner sur la liste des rémunérations</a></h1>
+        {% endif %} 
+    {% endif %} 
+{% else %} 
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=remuneration" class="violet">Retourner sur la liste des rémunérations</a></h1>
+       
+{% endif %}
+{% endblock %} 

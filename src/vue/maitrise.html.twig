@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Compétences de l'utilisateur {% endblock %}
+       
+{% block contenu %} <h1> Compétences de l'utilisateur </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+       {% else %}  
+       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+    {% endif %}         
+{% endif %}         
+    
+<div class="panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading background-violet">Liste des compétences - <a href="index.php?page=maitriseajout&idDev={{unIdDev}}" class="blanc">Ajouter une compétence</a></div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+  <table class="table table-hover table-striped">
+      <tr><th>Compétence</th><th>Niveau</th><th></th><th></th></tr>
+   {% for e in liste %}
+          <tr><td>{{e.libelle}} {{e.version}}</td><td>{{e.niveau}}</td><td> <div class="btn-group btn-group-lg"><a href="index.php?page=maitrisemodif&idComp={{e.idComp}}&idDev={{e.idDev}}"><span class="glyphicon glyphicon-pencil violet" aria-hidden="true"></span></a></div></td><td><div class="btn-group btn-group-lg"><a href="index.php?page=maitrise&idComp={{e.idComp}}&idDev={{e.idDev}}"><span class="glyphicon glyphicon-trash violet" aria-hidden="true"></span></a></div></td></tr> 
+   {% endfor %}    
+  </table>
+  </div>
+</div>
+
+{% endblock %}

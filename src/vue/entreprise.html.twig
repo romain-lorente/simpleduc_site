@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Gestion des Entreprises {% endblock %}
+       
+{% block contenu %} <h1> Gestion des Entreprises </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+       {% else %}  
+       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+    {% endif %}         
+{% endif %}         
+    
+<div class="panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading background-violet">Liste des entreprises - <a href="index.php?page=entrepriseajout" class="blanc">Ajouter une entreprise</a></div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+  <table class="table table-hover table-striped">
+      <tr><th>Nom :</th><th>Adresse :</th><th>ville :</th><th>nom contact :</th><th>Modifier :</th><th>supprimer :</th></tr>
+   {% for e in liste %}
+          <tr><td>{{e.nom}}</td><td>{{e.adresse}} {{e.cp}} </td><td>{{e.ville}}</td><td>{{e.nomContact}}</td> <td><div class="btn-group btn-group-lg"><a href="index.php?page=entreprisemodif&idEntreprise={{e.idEntreprise}}"><span class="glyphicon glyphicon-pencil violet" aria-hidden="true"></span></a></div></td><td><div class="btn-group btn-group-lg"><a href="index.php?page=entreprise&idEntreprise={{e.idEntreprise}}"><span class="glyphicon glyphicon-trash violet" aria-hidden="true"></span></a></div></td></tr> 
+   {% endfor %}   
+  </table>
+  </div>
+</div>
+
+{% endblock %} 
+
+

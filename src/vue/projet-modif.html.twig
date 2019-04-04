@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'un projet {% endblock %}
+       
+{% block contenu %} <h1> Modification d'un projet </h1> 
+
+{% if form.projet is defined %} 
+    {% if form.projet != null %}    
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=projetmodif" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="code" name="code" value="{{form.projet.code}}"/> 
+        <label for="inputDesignation" class="sr-only">Libellé:</label>
+        <input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Saisir un libellé" value="{{form.projet.libelle}}" required autofocus> 
+		
+        <label for="inputIdEquipe" class="sr-only">Équipe:</label>
+        <select name="inputIdEquipe" class="form-control">    
+        {% for u in form.liste %}
+            {% if form.projet.idEquipe == u.id %}  
+                <option value="{{ u.id }}" selected>{{ u.libelle }}</option> 
+            {% else %} 
+                <option value="{{ u.id }}">{{ u.libelle }}</option>
+            {% endif %}      
+        {% endfor%}    
+        </select>    
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Ajouter</button>
+        </form>
+        </div> 
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=projet" class="violet">Retourner sur la liste des projets</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=projet" class="violet">Retourner sur la liste des projets</a></h1>
+        {% endif %} 
+    {% endif %} 
+{% else %} 
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=projet" class="violet">Retourner sur la liste des projets</a></h1>
+       
+{% endif %}
+{% endblock %} 

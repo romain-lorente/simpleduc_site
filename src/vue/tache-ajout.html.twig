@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Ajout d'une tache {% endblock %}
+       
+{% block contenu %} <h1> Ajout d'une tache </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussi</h1>
+    {% else %} 
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
+    {% endif %}     
+{% else %}      
+    
+<div class="panel-body">
+  <form class="form-signin" action="index.php?page=tacheajout" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="inputLibelle" class="sr-only">Libellé:</label>
+    <input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Saisir un libellé" required autofocus>
+    
+       <label for="inputCout" class="sr-only">Coût de la tâche:</label>
+    <input type="number" id="inputCout" name="inputCout" class="form-control" placeholder="Saisir un cout" required autofocus>
+      
+      <label for="inputHoraire" class="sr-only">Nombre d'heures:</label>
+    <input type="number" id="inputHoraire" name="inputHoraire" class="form-control" placeholder="Saisir une heure" required autofocus>
+       
+    <select name="inputIdDev" class="form-control">
+        {% for r in form.liste2 %}
+            <option value="{{ r.email }}">{{ r.email }}</option> 
+        {% endfor%}    
+    </select>
+	
+	<select name="inputCode_Projet" class="form-control">
+        {% for r in form.liste %}
+            <option value="{{ r.code }}">{{ r.libelleProjet }}</option> 
+        {% endfor%}    
+    </select>
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btAjouter">Ajouter</button>
+  </form>
+</div>    
+{% endif %}
+{% endblock %} 

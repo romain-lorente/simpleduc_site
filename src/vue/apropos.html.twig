@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} A propos {% endblock %}
+       
+{% block contenu %} <h1>A propos </h1> 
+
+{%if session.role == 1 %}
+        <div class="panel">
+            <div class="panel-heading background-violet">Vous êtes connectés en tant qu'administrateur
+                <div class="panel-body violet">
+                    <ul>
+                        <li><a href="index.php?page=utilisateur" class="violet">Gestion des utilisateurs</a>
+                        </li>
+                        <li><a href="index.php?page=equipe" class="violet">Gestion des équipes</a></li>
+                    </ul>
+                </div>
+            </div>    
+        </div>
+       
+{% else %}
+      <div class="panel">
+        <div class="panel-heading background-violet">Vous êtes connecté en tant qu'utilisateur </div>
+      </div>
+{% endif %}
+<div class="panel-body violet">
+    <div>
+		<h3 id="toggle1" class="unselectable">Informations générales ▼</h3>
+        <p id="zoneTxt1">Ce site permet de gérer des équipes comprenant les utilisateurs, ainsi que les projets et leurs tâches assignées.</p>
+    </div>
+</div>
+
+<script>
+	var zoneTxt1 = document.getElementById("zoneTxt1");
+	var toggle1 = document.getElementById("toggle1");
+	zoneTxt1.style.display = "none";
+	toggle1.addEventListener("click", toggleTxt1, "false");
+	
+	function toggleTxt1()
+	{
+		if(zoneTxt1.style.display == "none")
+		{
+			zoneTxt1.style.display = "block";
+			toggle1.innerHTML = "Informations générales ▲";
+		}
+		else
+		{
+			zoneTxt1.style.display = "none";
+			toggle1.innerHTML = "Informations générales ▼";
+		}
+	}
+</script>
+
+{% endblock %} 

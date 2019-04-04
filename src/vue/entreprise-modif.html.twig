@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'une entreprise {% endblock %}
+       
+{% block contenu %} <h1> Modification d'une entreprise </h1> 
+
+{% if form.entreprise is defined %} 
+    {% if form.entreprise != null %}    
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=entreprisemodif" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="idEntreprise" name="idEntreprise" value="{{form.entreprise.idEntreprise}}"/> 
+        <label for="inputNom" class="sr-only">nom: {{form.entreprise.nom}}</label>
+        <input type="text" id="inputNom" name="inputNom" class="form-control" placeholder="Saisir un libellé" value="{{form.entreprise.nom}}" required autofocus>
+        <br/>
+        <label for="inputDesignation" class="sr-only">adresse: {{form.entreprise.adresse}}</label>
+        <input type="text" id="inputAdresse" name="inputAdresse" class="form-control" placeholder="saisir une adresse" value="{{form.entreprise.adresse}}" required autofocus>
+        <br/>
+        <label for="inputDesignation" class="sr-only">cp: {{form.entreprise.cp}}</label>
+        <input type="text" id="inputCp" name="inputCp" class="form-control" placeholder="saisir un code postal" value="{{form.entreprise.cp}}" required autofocus>
+        <br/>
+        <label for="inputDesignation" class="sr-only">ville: {{form.entreprise.ville}}</label>
+        <input type="text" id="inputVille" name="inputVille" class="form-control" placeholder="saisir un Nom de ville" value="{{form.entreprise.ville}}" required autofocus>
+        <br/>
+        <label for="inputDesignation" class="sr-only">contact: {{form.entreprise.nomContact}}</label>
+        <input type="text" id="inputNomContact" name="inputNomContact" class="form-control" placeholder="saisir un nom de contact" value="{{form.entreprise.nomContact}}" required autofocus>
+        <br/>   
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Ajouter</button>
+        </form>
+        </div> 
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=entreprise" class="violet">Retourner sur la liste des entreprises</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=entreprise" class="violet">Retourner sur la liste des entreprises</a></h1>
+        {% endif %} 
+    {% endif %} 
+{% else %} 
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=entreprise" class="violet">Retourner sur la liste des entreprises</a></h1>
+       
+{% endif %}
+{% endblock %} 
