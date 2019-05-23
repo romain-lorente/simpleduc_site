@@ -12,8 +12,8 @@ class Tache{
     public function __construct($db){
         $this->db = $db;
         $this->insert = $db->prepare("insert into tache(libelle, cout, horaire, idDev, code_Projet) values (:libelle, :cout, :horaire, :idDev, :code_Projet)");    
-        $this->select = $db->prepare("select tache.code, tache.libelle, cout, horaire, idDev, code_Projet, projet.libelle as libelleProjet
-		from tache inner join projet on tache.code_Projet = projet.code order by libelleProjet, tache.libelle");
+        $this->select = $db->prepare("select tache.code, tache.libelle, cout, horaire, idDev, code_Projet, Projet.libelle as libelleProjet
+		from tache inner join Projet on tache.code_Projet = Projet.code order by libelleProjet, tache.libelle");
         $this->selectByCode = $db->prepare("select code, libelle, cout, horaire, idDev, code_Projet from tache where code=:code");
         $this->update = $db->prepare("update tache set libelle=:libelle, cout=:cout, horaire=:horaire, idDev=:idDev, code_Projet=:code_Projet where code=:code");
         $this->delete = $db->prepare("delete from tache where code=:code");
