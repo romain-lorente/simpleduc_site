@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.6deb4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  jeu. 04 avr. 2019 à 08:39
--- Version du serveur :  10.1.35-MariaDB
--- Version de PHP :  7.2.9
+-- Host: localhost:3306
+-- Generation Time: May 23, 2019 at 04:43 PM
+-- Server version: 10.1.37-MariaDB-0+deb9u1
+-- PHP Version: 7.0.30-0+deb9u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `ppe`
+-- Database: `ppe`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `competence`
+-- Table structure for table `competence`
 --
 
 CREATE TABLE `competence` (
@@ -35,7 +33,7 @@ CREATE TABLE `competence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `competence`
+-- Dumping data for table `competence`
 --
 
 INSERT INTO `competence` (`id`, `libelle`, `version`) VALUES
@@ -48,10 +46,10 @@ INSERT INTO `competence` (`id`, `libelle`, `version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `contrat`
+-- Table structure for table `Contrat`
 --
 
-CREATE TABLE `contrat` (
+CREATE TABLE `Contrat` (
   `idContrat` int(11) NOT NULL,
   `dateDebut` date NOT NULL,
   `dateFin` date NOT NULL,
@@ -64,7 +62,7 @@ CREATE TABLE `contrat` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `developpeur`
+-- Table structure for table `developpeur`
 --
 
 CREATE TABLE `developpeur` (
@@ -73,7 +71,7 @@ CREATE TABLE `developpeur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `developpeur`
+-- Dumping data for table `developpeur`
 --
 
 INSERT INTO `developpeur` (`email`, `idRem`) VALUES
@@ -84,10 +82,10 @@ INSERT INTO `developpeur` (`email`, `idRem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entreprise`
+-- Table structure for table `Entreprise`
 --
 
-CREATE TABLE `entreprise` (
+CREATE TABLE `Entreprise` (
   `idEntreprise` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
@@ -97,16 +95,16 @@ CREATE TABLE `entreprise` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `entreprise`
+-- Dumping data for table `Entreprise`
 --
 
-INSERT INTO `entreprise` (`idEntreprise`, `nom`, `adresse`, `cp`, `ville`, `nomContact`) VALUES
+INSERT INTO `Entreprise` (`idEntreprise`, `nom`, `adresse`, `cp`, `ville`, `nomContact`) VALUES
 (1, 'Ã‰duc Ã  Sion', '58 Boulevard des Oeillets', '62000', 'Arras', 'M. Soin');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `equipe`
+-- Table structure for table `equipe`
 --
 
 CREATE TABLE `equipe` (
@@ -116,7 +114,7 @@ CREATE TABLE `equipe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `equipe`
+-- Dumping data for table `equipe`
 --
 
 INSERT INTO `equipe` (`id`, `libelle`, `idResponsable`) VALUES
@@ -125,20 +123,20 @@ INSERT INTO `equipe` (`id`, `libelle`, `idResponsable`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `maitrise`
+-- Table structure for table `Maitrise`
 --
 
-CREATE TABLE `maitrise` (
+CREATE TABLE `Maitrise` (
   `idComp` int(11) NOT NULL,
   `idDev` varchar(255) NOT NULL,
   `niveau` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `maitrise`
+-- Dumping data for table `Maitrise`
 --
 
-INSERT INTO `maitrise` (`idComp`, `idDev`, `niveau`) VALUES
+INSERT INTO `Maitrise` (`idComp`, `idDev`, `niveau`) VALUES
 (1, 'florian.brassart@epsi.fr', 'TrÃ¨s bon'),
 (3, 'florian.brassart@epsi.fr', 'Correct'),
 (4, 'florian.brassart@epsi.fr', 'Bon'),
@@ -147,10 +145,10 @@ INSERT INTO `maitrise` (`idComp`, `idDev`, `niveau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `participation`
+-- Table structure for table `Participation`
 --
 
-CREATE TABLE `participation` (
+CREATE TABLE `Participation` (
   `idDev` varchar(255) NOT NULL,
   `idEquipe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -158,46 +156,39 @@ CREATE TABLE `participation` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `projet`
+-- Table structure for table `Projet`
 --
 
-CREATE TABLE `projet` (
+CREATE TABLE `Projet` (
   `code` int(11) NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `idEquipe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `projet`
---
-
-INSERT INTO `projet` (`code`, `libelle`, `idEquipe`) VALUES
-(1, 'CrÃ©er le site', 2);
-
 -- --------------------------------------------------------
 
 --
--- Structure de la table `remuneration`
+-- Table structure for table `Remuneration`
 --
 
-CREATE TABLE `remuneration` (
+CREATE TABLE `Remuneration` (
   `idRem` int(11) NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `coutHoraire` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `remuneration`
+-- Dumping data for table `Remuneration`
 --
 
-INSERT INTO `remuneration` (`idRem`, `libelle`, `coutHoraire`) VALUES
+INSERT INTO `Remuneration` (`idRem`, `libelle`, `coutHoraire`) VALUES
 (1, 'DÃ©veloppeur', 20),
 (2, 'Chef de projet', 35);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -206,7 +197,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `libelle`) VALUES
@@ -216,29 +207,22 @@ INSERT INTO `role` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tache`
+-- Table structure for table `tache`
 --
 
 CREATE TABLE `tache` (
   `code` int(11) NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `cout` float NOT NULL,
-  `horaire` int(11) NOT NULL,
+  `heures` int(11) NOT NULL,
   `idDev` varchar(255) NOT NULL,
   `code_Projet` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `tache`
---
-
-INSERT INTO `tache` (`code`, `libelle`, `cout`, `horaire`, `idDev`, `code_Projet`) VALUES
-(1, 'Finir la table TÃ¢che', 0, 2, 'romain.lorente@epsi.fr', 1);
-
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Table structure for table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -250,7 +234,7 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Dumping data for table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`email`, `mdp`, `nom`, `prenom`, `idRole`) VALUES
@@ -263,78 +247,78 @@ INSERT INTO `utilisateur` (`email`, `mdp`, `nom`, `prenom`, `idRole`) VALUES
 ('valentin.fiquet@epsi.fr', '$2y$10$g2DcW58CwRRAAY0f2qRgZ.Wh1q5Bx5QPgDCb.OHv5SIsw78VW3LaW', 'Fiquet', 'Valentin', 2);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `competence`
+-- Indexes for table `competence`
 --
 ALTER TABLE `competence`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `contrat`
+-- Indexes for table `Contrat`
 --
-ALTER TABLE `contrat`
+ALTER TABLE `Contrat`
   ADD PRIMARY KEY (`idContrat`),
   ADD KEY `Contrat_Projet_FK` (`code`),
   ADD KEY `Contrat_Entreprise_FK` (`idEntreprise`);
 
 --
--- Index pour la table `developpeur`
+-- Indexes for table `developpeur`
 --
 ALTER TABLE `developpeur`
   ADD PRIMARY KEY (`email`),
   ADD KEY `Developpeur_Remuneration_FK` (`idRem`);
 
 --
--- Index pour la table `entreprise`
+-- Indexes for table `Entreprise`
 --
-ALTER TABLE `entreprise`
+ALTER TABLE `Entreprise`
   ADD PRIMARY KEY (`idEntreprise`);
 
 --
--- Index pour la table `equipe`
+-- Indexes for table `equipe`
 --
 ALTER TABLE `equipe`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Equipe_Responsable_FK` (`idResponsable`);
 
 --
--- Index pour la table `maitrise`
+-- Indexes for table `Maitrise`
 --
-ALTER TABLE `maitrise`
+ALTER TABLE `Maitrise`
   ADD PRIMARY KEY (`idComp`,`idDev`),
   ADD KEY `Maitrise_Developpeur_FK` (`idDev`);
 
 --
--- Index pour la table `participation`
+-- Indexes for table `Participation`
 --
-ALTER TABLE `participation`
+ALTER TABLE `Participation`
   ADD PRIMARY KEY (`idDev`,`idEquipe`),
   ADD KEY `Participation_Equipe_FK` (`idEquipe`);
 
 --
--- Index pour la table `projet`
+-- Indexes for table `Projet`
 --
-ALTER TABLE `projet`
+ALTER TABLE `Projet`
   ADD PRIMARY KEY (`code`),
   ADD KEY `Projet_Equipe_FK` (`idEquipe`);
 
 --
--- Index pour la table `remuneration`
+-- Indexes for table `Remuneration`
 --
-ALTER TABLE `remuneration`
+ALTER TABLE `Remuneration`
   ADD PRIMARY KEY (`idRem`);
 
 --
--- Index pour la table `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `tache`
+-- Indexes for table `tache`
 --
 ALTER TABLE `tache`
   ADD PRIMARY KEY (`code`),
@@ -342,121 +326,112 @@ ALTER TABLE `tache`
   ADD KEY `Tache_Projet_FK` (`code_Projet`);
 
 --
--- Index pour la table `utilisateur`
+-- Indexes for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`email`),
   ADD KEY `Utilisateur_Role_FK` (`idRole`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `competence`
+-- AUTO_INCREMENT for table `competence`
 --
 ALTER TABLE `competence`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT pour la table `contrat`
+-- AUTO_INCREMENT for table `Contrat`
 --
-ALTER TABLE `contrat`
-  MODIFY `idContrat` int(11) NOT NULL AUTO_INCREMENT;
-
+ALTER TABLE `Contrat`
+  MODIFY `idContrat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT pour la table `entreprise`
+-- AUTO_INCREMENT for table `Entreprise`
 --
-ALTER TABLE `entreprise`
+ALTER TABLE `Entreprise`
   MODIFY `idEntreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT pour la table `equipe`
+-- AUTO_INCREMENT for table `equipe`
 --
 ALTER TABLE `equipe`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT pour la table `projet`
+-- AUTO_INCREMENT for table `Projet`
 --
-ALTER TABLE `projet`
+ALTER TABLE `Projet`
   MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT pour la table `remuneration`
+-- AUTO_INCREMENT for table `Remuneration`
 --
-ALTER TABLE `remuneration`
+ALTER TABLE `Remuneration`
   MODIFY `idRem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT pour la table `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT pour la table `tache`
+-- AUTO_INCREMENT for table `tache`
 --
 ALTER TABLE `tache`
-  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for table `Contrat`
 --
+ALTER TABLE `Contrat`
+  ADD CONSTRAINT `Contrat_Entreprise_FK` FOREIGN KEY (`idEntreprise`) REFERENCES `Entreprise` (`idEntreprise`),
+  ADD CONSTRAINT `Contrat_Projet_FK` FOREIGN KEY (`code`) REFERENCES `Projet` (`code`);
 
 --
--- Contraintes pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD CONSTRAINT `Contrat_Entreprise_FK` FOREIGN KEY (`idEntreprise`) REFERENCES `entreprise` (`idEntreprise`),
-  ADD CONSTRAINT `Contrat_Projet_FK` FOREIGN KEY (`code`) REFERENCES `projet` (`code`);
-
---
--- Contraintes pour la table `developpeur`
+-- Constraints for table `developpeur`
 --
 ALTER TABLE `developpeur`
-  ADD CONSTRAINT `Developpeur_Remuneration_FK` FOREIGN KEY (`idRem`) REFERENCES `remuneration` (`idRem`),
+  ADD CONSTRAINT `Developpeur_Remuneration_FK` FOREIGN KEY (`idRem`) REFERENCES `Remuneration` (`idRem`),
   ADD CONSTRAINT `Developpeur_Utilisateur_FK` FOREIGN KEY (`email`) REFERENCES `utilisateur` (`email`);
 
 --
--- Contraintes pour la table `equipe`
+-- Constraints for table `equipe`
 --
 ALTER TABLE `equipe`
   ADD CONSTRAINT `Equipe_Responsable_FK` FOREIGN KEY (`idResponsable`) REFERENCES `utilisateur` (`email`);
 
 --
--- Contraintes pour la table `maitrise`
+-- Constraints for table `Maitrise`
 --
-ALTER TABLE `maitrise`
+ALTER TABLE `Maitrise`
   ADD CONSTRAINT `Maitrise_Competence_FK` FOREIGN KEY (`idComp`) REFERENCES `competence` (`id`),
   ADD CONSTRAINT `Maitrise_Developpeur_FK` FOREIGN KEY (`idDev`) REFERENCES `developpeur` (`email`);
 
 --
--- Contraintes pour la table `participation`
+-- Constraints for table `Participation`
 --
-ALTER TABLE `participation`
+ALTER TABLE `Participation`
   ADD CONSTRAINT `Participation_Developpeur_FK` FOREIGN KEY (`idDev`) REFERENCES `developpeur` (`email`),
   ADD CONSTRAINT `Participation_Equipe_FK` FOREIGN KEY (`idEquipe`) REFERENCES `equipe` (`id`);
 
 --
--- Contraintes pour la table `projet`
+-- Constraints for table `Projet`
 --
-ALTER TABLE `projet`
+ALTER TABLE `Projet`
   ADD CONSTRAINT `Projet_Equipe_FK` FOREIGN KEY (`idEquipe`) REFERENCES `equipe` (`id`);
 
 --
--- Contraintes pour la table `tache`
+-- Constraints for table `tache`
 --
 ALTER TABLE `tache`
   ADD CONSTRAINT `Tache_Developpeur_FK` FOREIGN KEY (`idDev`) REFERENCES `developpeur` (`email`),
-  ADD CONSTRAINT `Tache_Projet_FK` FOREIGN KEY (`code_Projet`) REFERENCES `projet` (`code`);
+  ADD CONSTRAINT `Tache_Projet_FK` FOREIGN KEY (`code_Projet`) REFERENCES `Projet` (`code`);
 
 --
--- Contraintes pour la table `utilisateur`
+-- Constraints for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD CONSTRAINT `Utilisateur_Role_FK` FOREIGN KEY (`idRole`) REFERENCES `role` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
